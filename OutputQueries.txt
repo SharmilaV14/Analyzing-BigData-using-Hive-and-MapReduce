@@ -1,0 +1,71 @@
+_________________HIVE Queries_______________
+
+1. Top 5
+INSERT OVERWRITE LOCAL DIRECTORY '/home/cloudera/798Project/qtop5-2016' 
+    ROW FORMAT DELIMITED 
+    FIELDS TERMINATED BY ','
+    select call_type, year, count(*) as cnt from calls
+    where year = 2016
+    group by call_type, year
+    order by cnt desc limit 5;
+
+
+2. INSERT OVERWRITE LOCAL DIRECTORY '/home/cloudera/798Project/output_mi_2016' 
+    ROW FORMAT DELIMITED 
+    FIELDS TERMINATED BY ','
+    select call_type, year, Zipcode, count(*) as cnt from calls
+    where year = 2016 and call_type ='MedicalIncident'
+    group by Zipcode, call_type, year
+    order by cnt desc limit 5;
+
+INSERT OVERWRITE LOCAL DIRECTORY '/home/cloudera/798Project/output_mi_2015' 
+    ROW FORMAT DELIMITED 
+    FIELDS TERMINATED BY ','
+    select call_type, year, Zipcode, count(*) as cnt from calls
+    where year = 2015 and call_type ='MedicalIncident'
+    group by Zipcode, call_type, year
+    order by cnt desc limit 5;
+
+INSERT OVERWRITE LOCAL DIRECTORY '/home/cloudera/798Project/output_last_sf' 
+    ROW FORMAT DELIMITED 
+    FIELDS TERMINATED BY ','
+    select call_type, year, count(*) as cnt from calls
+    where year = 2014 or year =2015 or year 2016 and call_type ='StructureFire'
+    group by call_type, year
+    order by cnt desc limit 5;
+
+3. 
+INSERT OVERWRITE LOCAL DIRECTORY '/home/cloudera/798Project/ctg_pot' 
+ROW FORMAT DELIMITED 
+FIELDS TERMINATED BY ','
+Select call_type_group, count(*), year from calls
+where call_type_group = "Potentially Life-Threatening" or call_type_group="Non Life-threatening" or call_type_group="Fire"
+group by year, call_type_group
+order by year asc;
+
+4. 
+INSERT OVERWRITE LOCAL DIRECTORY '/home/cloudera/798Project/month' 
+ROW FORMAT DELIMITED 
+FIELDS TERMINATED BY ','
+select month, count(*), year from calls
+where year = '2014' or year =2015 or year =2016
+group by month, year
+order by month asc;
+
+5. 
+INSERT OVERWRITE LOCAL DIRECTORY '/home/cloudera/798Project/month' 
+ROW FORMAT DELIMITED 
+FIELDS TERMINATED BY ','
+Select cp,cnt,y1
+from (select call_type as cp ,count(*) as cnt,year as y1 from calls where year="2014" or year="2015" or year="2016 group by year, call_type")t1
+where cp= 'StructureFire' or cp='MedicalIncident' or cp= 'Alarms'
+
+6.
+INSERT OVERWRITE LOCAL DIRECTORY '/home/cloudera/798Project/output_ct' 
+    ROW FORMAT DELIMITED 
+    FIELDS TERMINATED BY ','
+    select call_type, year, count(*) from calls
+where call_type='MedicalIncident' or call_type = 'StructureFire' or call_type = 'Alarms'
+group by call_type, year;
+
+
