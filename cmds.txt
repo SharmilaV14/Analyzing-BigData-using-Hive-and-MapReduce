@@ -1,0 +1,44 @@
+Creating table :
+create table calls_fire(call_type String,day String,month int,day_of_month int,year int,Call_Final_disposition String,Street string,Zipcode int,Batallion String,Station_area int,Box int, O_priority int,F_Priority int,call_type_group String,unit_type String,neighborhood_district String, Latitude int,Longitude int) row format delimited fields terminated by ','; stored as textfile;
+
+			(OR)
+
+CREATE TABLE Staff (id int, name string, salary double) row format delimited fields terminated by ‘,’;
+
+
+Loading the data into table. 
+
+
+
+INSERT OVERWRITE LOCAL DIRECTORY '/home/cloudera/798Project/qtop5' 
+ROW FORMAT DELIMITED 
+FIELDS TERMINATED BY ','
+
+cat '/home/cloudera/798project/q4'/* > '/home/cloudera/798project/output_q4.txt'
+
+javac -cp /usr/lib/hadoop/*:/usr/lib/hadoop-mapreduce/* mr.java -d build -Xlint
+
+jar -cvf mr.jar -C build/ .
+
+
+hadoop jar mr.jar org.myorg.mr /user/cloudera/mapreduce/input /user/cloudera/mapreduce/output 
+
+hadoop fs -cat /user/cloudera/mapreduce/output3/*
+
+
+______________
+MR Programs
+
+mapreduce folder
+
+$ mkdir -p build
+$ javac -cp /usr/lib/hadoop/*:/usr/lib/hadoop-mapreduce/* mr.java -d build -Xlint 
+$ jar -cvf mr.jar -C build/ . 
+$ hadoop jar mr.jar org.myorg.mr /user/cloudera/mapreduce/input /user/cloudera/mapreduce/output-monthmr 
+hadoop fs -cat /user/cloudera/798Project/output_ct/* 
+
+cat '/home/cloudera/798Project/month'/* > month.txt
+
+
+
+
