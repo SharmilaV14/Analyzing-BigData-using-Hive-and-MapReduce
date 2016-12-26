@@ -2,6 +2,6 @@
 
 
 
-Copyright: Sharmila Vegesana, Graduate Student, Computer Science, Kansas State University.
+Copyright: Sharmila Vegesana and Nithin Kumar, Graduate Students, Computer Science, Kansas State University.
 
 
